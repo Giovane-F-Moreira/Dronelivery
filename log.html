@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Drone-API</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script type="text/javascript" src="libs/jquery-3.6.1.min.js"></script>
+		<script type="text/javascript" src="libs/jQuery-Mask-Plugin-master/src/jquery.mask.js"></script>	
+    <script src="./assets/js/main.js" type='module' defer></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <!-- TEste -->
+    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <style>
+
+    </style>
+  </head>
+
+  <body>
+    <!--Main Navigation-->
+    <header>
+      <!-- Sidebar -->
+      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse" style="background-color: #2C569E;">
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a  href="./index.html" id="pageM" class="list-group-item list-group-item-action py-2 ripple" 
+                style="background-color: #2C569E;" 
+                onmouseout="focusOptionM()" 
+                onmouseover="focusOptionOverM()" 
+                aria-current="true"
+            >
+              <span style="color: white;"><ion-icon size="large" name="bar-chart-outline"></ion-icon>&nbsp;&nbsp;Main dashboard</span>
+            </a>
+            <a href="./log.html" id="pageL" class="list-group-item list-group-item-action py-2 ripple" 
+              style="background-color: #2C569E;" 
+              onmouseout="focusOptionL()"
+              onmouseover="focusOptionOverL()" 
+            >
+              <span style="color: white;"><ion-icon size="large" name="albums-outline"></ion-icon>&nbsp;&nbsp;Log</span>
+            </a>
+            <a href="./about.html" id="pageA" class="list-group-item list-group-item-action py-2 ripple" 
+              style="background-color: #2C569E;" 
+              onmouseout="focusOptionA()"
+              onmouseover="focusOptionOverA()"   
+            >
+              <span style="color: white;"><ion-icon size="large" name="newspaper-outline"></ion-icon>&nbsp;&nbsp;About</span>
+            </a>
+          
+          </div>
+        </div>
+      </nav>
+      <!-- Sidebar -->
+
+      <!-- Navbar -->
+      <nav id="main-navbar" class="navbar navbar-expand-lg fixed-top" style="background-color: #2C569E;">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+
+          <!-- Brand -->
+          <div >
+            <center>
+              <div >
+                <center>
+                  <img src="./assets/icons/drone.png" class="" style="width: 50px; height: 50px;"/>
+                  <label style="color: white; font-size: 24px; ">&nbsp;&nbsp;DronEat</label>
+                </center>
+              </div>        
+            </center>
+          </div>
+
+          <!-- Avatar -->
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+                role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                <img src="https://avatars.githubusercontent.com/u/64364499?v=4" class="rounded-circle"
+                  height="40" alt="Avatar" loading="lazy" />
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <a class="dropdown-item" href="#">My profile</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Settings</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="#">Logout</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
+    </header>
+    <!--Main Navigation-->
+
+    <!--Main layout-->
+    <main style="margin-top: 58px;">
+      <div class="container pt-4">
+
+        <!-- ROSLibJS -->
+        <div class="container detalhe">
+          
+          <center>
+            <h1><ion-icon name="construct-outline" size="large"></ion-icon>&nbsp;&nbsp;Sistema de Log</h1>
+
+            <p>
+              O logs do sistema são arquivos que registram as ações que acontecem dentro do servidor,
+              esses registros mostram a data, hora, ação que ocorreu no sistema, colaborando para manutenção e
+              implementação de novas features.
+            </p>
+            <div class="row">
+              
+              <div class="col-3">
+              </div>
+              <div class="col-2">
+
+              </div>
+            </div>
+            <div class="row">
+              
+            </div>
+          </center><br>
+        </div><br><br><br>
+        <div>
+          <h3>Dados do sistema</h3>
+          <b>Estado: </b><span style="color: red;">Desligado</span><br>
+          <b>Topic publicaded: </b><span style="color: red;">No</span><br>
+          <b>Mensagem publicaded: </b><span style="color: red;">No</span>
+        </div><br><br>
+
+        <h3>Tabela de registros</h3>
+
+        <div class="row">
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Ação</th>
+                <th scope="col">Username</th>
+                <th scope="col">Data</th>
+                <th scope="col">Hora</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Erro API via Cep</td>
+                <td>Giovane</td>
+                <td>03/11/2022</td>
+                <td>22:20</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Connection Close</td>
+                <td>João</td>
+                <td>04/11/2022</td>
+                <td>21:14</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Message Undefined /Delivery</td>
+                <td>Pedro</td>
+                <td>04/11/2022</td>
+                <td>11:17</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <h4>Detalhes dos registros</h4>
+            <div class="form-group green-border-focus">
+              <textarea class="form-control" id="exampleFormControlTextarea5" rows="5"></textarea>
+            </div>
+          </div>
+        </div><br>
+
+        <div class="row">
+          <div class="col-4">
+            <b>Escolha o periodo para filtrar a busca:</b>
+            <select class="form-control">
+              <option>Semana</option>
+              <option>Mês</option>
+              <option>Ano</option>
+            </select>
+          </div>
+
+          <div class="col-4">
+            <b>Exporte para alguma planilha:</b>
+            <button class="form-control" style="background-color: rgb(46, 155, 46);">Exportar dados</button>
+          </div>
+        </div>
+        
+        <br>
+
+        <br>
+        <!-- aqui -->
+        <!-- <img id="my_image" style='height: 100%; width: 100%; object-fit: contain' src="./assets/img/placeholder.png"> -->
+      </div>
+      <!-- Footer -->
+      <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+          <!-- Section: Social media -->
+          <section class="mb-4">
+
+            <!-- Lattes -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="http://lattes.cnpq.br/5440932749354672" role="button"
+              ><ion-icon name="document-text-outline" size="large"></ion-icon>
+            </a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.giovanefernandes.com/" role="button"
+              ><ion-icon name="desktop-outline" size="large"></ion-icon>
+            </a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.instagram.com/giovane.f.moreira/" role="button"
+              ><ion-icon name="logo-instagram" size="large"></ion-icon>
+            </a>
+
+            <!-- Linkedin -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://www.linkedin.com/feed/" role="button"
+              ><ion-icon name="logo-linkedin" size="large"></ion-icon>
+            </a>
+
+            <!-- Github -->
+            <a class="btn btn-outline-light btn-floating m-1" target="_blank" href="https://github.com/Giovane-F-Moreira" role="button"
+              ><ion-icon name="logo-github" size="large"></ion-icon>
+            </a>
+          </section>
+          <!-- Section: Social media -->
+
+          <!-- Section: Form -->
+          <section class="">
+            <form action="">
+              <!--Grid row-->
+
+              <!--Grid row-->
+            </form>
+          </section>
+          <!-- Section: Form -->
+
+          <!-- Section: Text -->
+          <section class="mb-4">
+            <p>
+              "Se eu vi mais longe, foi por estar sobre os ombros de gigantes (NEWTON, Isaac)"
+            </p>
+            <label>Agradeço a todos os professores do Instituto Federal da Bahia, em especial ao docentes 
+              de Sistema de Informação, do Gipar e aos colegas e amigos, ha todos vocês vai o meu muito 
+              obrigado!
+            </label>
+          </section>
+          <!-- Section: Text -->
+
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-1">
+                <h5 class="text-uppercase">Links</h5>
+
+                <ul class="list-unstyled mb-0">
+                  <li>
+                    <a href="https://ionic.io/ionicons" class="text-white">Icones</a>
+                  </li>
+                  <li>
+                    <a href="https://viacep.com.br/" class="text-white">Via Cep</a>
+                  </li>
+                  <li>
+                    <a href="http://wiki.ros.org/roslibjs" class="text-white">RosLibJs</a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="col-1"></div>
+              <div class="col-3">
+                <img src="./assets/img/Logo-Cabeçalho.png" style="width: 300px;">
+              </div>
+              <div class="col-3">
+                <img src="./assets/img/ras.png" style="width: 200px;">
+              </div>
+              <div class="col-2">
+                <img src="./assets/img/ifba.png" style="width: 70px;">
+              </div>
+              <div class="col-2"></div>
+
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+          © 2022 Copyright:
+          <a class="text-white" target="_blank" href="https://www.giovanefernandes.com/">Giovane Fernandes Moreira</a>
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <!-- Footer -->
+
+    </main>
+    <!--Main layout-->
+
+    <script>
+      $(document).ready(function(){
+        $("#cpf").mask("000.000.000-00");
+        $("#celular").mask("(00) 00000-0000");
+        $("#cep").mask("00.000-000");
+        $('#uf').mask('SS');
+      })
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!--  Roslibjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/roslibjs/1.1.0/roslib.js" integrity="sha512-pCcZE7tYxCroXRw6OsC4hnCKF+cYszKf2I4++0xASgb4wm7rgf8tY65tmmgnvb9zxWQt1JeOE/lKPTdp9FLoCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  
+    <script>
+
+    // Connecting to ROS
+    let ros = new ROSLIB.Ros();
+    let connected = false;
+
+    //conecta no ros
+    function conectAndPublicRos(){
+
+      // If there is an error on the backend, an 'error' emit will be emitted.
+      ros.on('error', function(error) {
+          console.log(error);
+      });
+
+      if(document. querySelector("#onOff").checked){
+        connected = true;
+        document.querySelector("#button_on_off").innerHTML ="ON";
+        document.querySelector("#button_on_off").style.color = 'green';
+        document.querySelector("#txtrect").innerHTML ="Conectado!";
+        document.querySelector("#txtrect").style.color = 'green';
+        document.getElementById("iconDrone").src = './assets/gifs/drone-On_r.gif';
+        // Find out exactly when we made a connection.
+        ros.on('connection', function() {
+          console.log('Connection made!');
+        });
+
+
+        // Create a connection to the rosbridge WebSocket server.
+        ros.connect('ws://localhost:9090');
+      }else{
+        let connected = false;
+        document.querySelector("#button_on_off").innerHTML ="OFF";
+        document.querySelector("#button_on_off").style.color = 'red';
+        document.querySelector("#txtrect").innerHTML ="Desconectado!";
+        document.getElementById("iconDrone").src = './assets/icons/droneOFF.png';
+        document.getElementById("delivery").src = './assets/icons/droneOFF.png';
+        document.getElementById("city-drone").src = './assets/img/Cidade_off.png';
+        document.querySelector("#txtrect").style.color = 'red';
+        ros.on('close', function() {
+        console.log('Connection closed.');
+
+        });
+      }
+
+
+
+      
+      // alert(`Conectado${ros.connect('ws://localhost:9090')}`)
+    }
+
+    function topicAndMessage(FilterResult) {
+
+      if(document. querySelector("#onOff").checked){
+        let connected = true;
+
+        // Publishing a Topic
+        let listener = new ROSLIB.Topic({
+          ros : ros,
+          name : '/delivery',
+          messageType : 'std_msgs/String'
+        });   
+
+        let message = new ROSLIB.Message({
+            data : FilterResult
+        });
+
+        listener.publish(message);
+        console.log('Topic published');
+        console.log('Rostopic echo  ' + listener.name + ': ' + message.data);
+
+        listener.subscribe(function(message) {
+            console.log('Topic subescribed');
+            console.log('Rostopic echo  ' + listener.name + ': ' + message.data);
+            listener.unsubscribe();
+        });
+
+        document.getElementById("delivery").src = './assets/gifs/drone-entrega.gif';
+        document.getElementById("city-drone").src = './assets/gifs/cidade.gif';
+      }else{
+        let connected = false;
+        clean();
+        alert("Verifique a conexão ou conecte-se ao ROS primeiro!")
+      }
+      
+    }
+
+    function clean(){
+      document.getElementById('uf').value = ''
+      document.getElementById('city').value = ''
+      document.getElementById('district').value = ''
+      document.getElementById('adress').value = ''
+      document.getElementById('complement').value = ''
+    }
+
+
+    function focusOptionM(){
+      document.querySelector("#pageM").style.backgroundColor = "#2C569E";
+    }
+    function focusOptionOverM(){
+      document.querySelector("#pageM").style.backgroundColor = "#1f4992";
+    }
+
+    function focusOptionL(){
+      document.querySelector("#pageL").style.backgroundColor = "#2C569E";
+    }    
+    function focusOptionOverL(){
+      document.querySelector("#pageL").style.backgroundColor = "#1f4992";
+    }
+    
+    function focusOptionA(){
+      document.querySelector("#pageA").style.backgroundColor = "#2C569E";
+    }
+    function focusOptionOverA(){
+      document.querySelector("#pageA").style.backgroundColor = "#1f4992";
+    }
+
+    function go(){
+
+      if(connected && document. querySelector("#onOff").checked){
+        const uf          = document.getElementById('uf').value;
+        const city        = document.getElementById('city').value;
+        const district    = document.getElementById('district').value;
+        const adressStreet= document.getElementById('adress').value;
+        const complement  = document.getElementById('complement').value;
+  
+      FilterResult = `${uf},${city},${district},${adressStreet},${complement}`;
+      topicAndMessage(FilterResult);
+      }else{
+        connected= false;
+        clean();
+        alert("Verifique a conexão ou conecte-se ao ROS primeiro!")
+      }
+
+
+    var image_topic = new ROSLIB.Topic({
+      ros: ros, name: '/stream1/image/compressed',
+      messageType: 'sensor_msgs/CompressedImage'
+    });
+
+    image_topic.subscribe(function(message) {
+      document.getElementById('my_image').src = "data:image/jpg;base64," + message.data;
+      image_topic.unsubscribe();
+    });
+
+    }
+    </script>
+  </body>
+</html>
