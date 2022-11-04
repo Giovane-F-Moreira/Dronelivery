@@ -1,6 +1,10 @@
 # Interface Dronelivery
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Giovane-F-Moreira/Dronelivery) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/Giovane-F-Moreira/Dronelivery) ![Lines of code](https://tokei.rs/b1/github/Giovane-F-Moreira/Dronelivery) ![GitHub language count](https://img.shields.io/github/languages/count/Giovane-F-Moreira/Dronelivery) ![GitHub top language](https://img.shields.io/github/languages/top/Giovane-F-Moreira/Dronelivery) ![GitHub last commit](https://img.shields.io/github/last-commit/Giovane-F-Moreira/Dronelivery) ![GitHub forks](https://img.shields.io/github/forks/Giovane-F-Moreira/Dronelivery) ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Giovane-F-Moreira/Dronelivery)![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Giovane-F-Moreira/Dronelivery) ![GitHub followers](https://img.shields.io/github/followers/Giovane-F-Moreira?label=Follow)
+![GitHub repo size](https://img.shields.io/github/repo-size/Giovane-F-Moreira/Dronelivery) ![GitHub repo file count](https://img.shields.io/github/directory-file-count/Giovane-F-Moreira/Dronelivery) ![GitHub language count](https://img.shields.io/github/languages/count/Giovane-F-Moreira/Dronelivery) ![GitHub top language](https://img.shields.io/github/languages/top/Giovane-F-Moreira/Dronelivery) ![GitHub last commit](https://img.shields.io/github/last-commit/Giovane-F-Moreira/Dronelivery) ![GitHub forks](https://img.shields.io/github/forks/Giovane-F-Moreira/Dronelivery) ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Giovane-F-Moreira/Dronelivery)![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Giovane-F-Moreira/Dronelivery) ![GitHub followers](https://img.shields.io/github/followers/Giovane-F-Moreira?label=Follow)
+
+<center>
+  <img src="./assets/gifs/sistema.gif" alt="exemplo imagem">
+</center>
 
 > Esta implementação une os recurso de uma API com uma biblioteca para dar suporte a entregas delivery por meio de drones
 
